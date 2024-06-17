@@ -1,5 +1,6 @@
 package com.example.demo.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,8 +17,11 @@ import org.springframework.security.core.userdetails.User;
 @EnableWebSecurity
 public class SecurityConfig {
 	
-	String username = "admin";
-	String password = "1234";
+	@Value("${spring.security.user.name}")
+	private String username;
+	
+	@Value("${spring.security.user.password}")
+	private String password;
 	
 	@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
